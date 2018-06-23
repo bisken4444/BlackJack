@@ -20,7 +20,6 @@ public class Deck {
 	public Deck(int iNbrOfDecks) {
 		for (int i = 0; i < iNbrOfDecks; i++) {
 			for (eCardSuit Suit : eCardSuit.values())
-
 			{
 				for (eCardRank Rank : eCardRank.values()) {
 					cards.add(new Card(Rank, Suit));
@@ -30,7 +29,7 @@ public class Deck {
 		Collections.shuffle(cards);
 	}
 
-
+	
 	
 	public ArrayList<Card> getCards() {
 		return cards;
