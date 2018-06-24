@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import pkgEnum.eExceptionType;
 import pkgExceptions.DeckException;
+import pkgExceptions.HandException;
 
 public class Hand {
 
@@ -19,19 +20,22 @@ public class Hand {
 	
 	public void Hit(Deck d)
 	{
-		try {
-			currentDeck = d;
-			handCards.add(currentDeck.Draw());
-		} 
-		catch (DeckException e) {
-			if (e.geteExceptionType() == eExceptionType.EmptyDeck)
-			{
-				currentDeck = new Deck();
-				Hit(currentDeck);
+		if (ScoreHand()[1] <= 21 )
+		{	
+			try {
+				currentDeck = d;
+				handCards.add(currentDeck.Draw());
+			} 
+			catch (DeckException e) {
+				if (e.geteExceptionType() == eExceptionType.EmptyDeck)
+				{
+					currentDeck = new Deck();
+					Hit(currentDeck);
+				}
 			}
-		}
+		} 
 	}
-	
+
 	public int[] ScoreHand()
 	{
 		HandScore HandScore = new HandScore(handCards);
@@ -45,6 +49,13 @@ public class Hand {
 	public ArrayList<Card> getHand()
 	{
 		return handCards;
+	}
+	
+	public boolean canSplit() {
+		if (handCards.get(0).geteCardRank().ordinal() == handCards.get(1).geteCardRank().ordinal()) {
+			return true;
+		}
+		return false;
 	}
 	
 }

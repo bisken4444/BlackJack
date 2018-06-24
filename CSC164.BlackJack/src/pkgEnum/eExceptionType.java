@@ -2,5 +2,5 @@ package pkgEnum;
 
 public enum eExceptionType {
 
-	EmptyDeck;
+	EmptyDeck,Bust;
 }
